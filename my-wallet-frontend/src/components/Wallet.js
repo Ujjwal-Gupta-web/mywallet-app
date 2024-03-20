@@ -47,7 +47,7 @@ const Wallet = () => {
                     <>
                         <div className="max-w-md ">
                             <div className="mb-2 block">
-                                <Label htmlFor="amount" value="Enter Amount to be Added" />
+                                <Label htmlFor="amount" value="Enter Amount to be Added (₹)" />
                             </div>
                             <TextInput id="amount" type="number" rightIcon={HiCash} placeholder="" required
                                 value={addAmount}
@@ -71,7 +71,7 @@ const Wallet = () => {
                     <>
                         <div className="max-w-md ">
                             <div className="mb-2 block">
-                                <Label htmlFor="amount" value="Enter Amount to be withdrawn" />
+                                <Label htmlFor="amount" value="Enter Amount to be withdrawn (₹)" />
                             </div>
                             <TextInput id="amount" type="number" rightIcon={HiCash} placeholder="" required
                                 value={withdrawAmount}

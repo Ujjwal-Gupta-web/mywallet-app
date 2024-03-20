@@ -70,15 +70,15 @@ const FilterModal = ({ type, openModal, setOpenModal, original, dispTransactions
                             <Tabs.Item title="Date" >
                                 <div className="max-w-md ">
                                     <div className="mb-2 block">
-                                        <Label htmlFor="search" value="From" />
+                                        <Label htmlFor="from" value="From" />
                                     </div>
-                                    <input type="date" onChange={(e) => setFilterObj({ ...filterObj, start: e.target.value })} />
+                                    <input type="date" id="from" name="from" onChange={(e) => setFilterObj({ ...filterObj, start: e.target.value })} />
                                 </div>
                                 <div className="max-w-md my-3">
                                     <div className="mb-2 block">
-                                        <Label htmlFor="search" value="To" />
+                                        <Label htmlFor="to" value="To" />
                                     </div>
-                                    <input type="date" onChange={(e) => setFilterObj({ ...filterObj, end: e.target.value })} />
+                                    <input type="date" id="to" name="to" onChange={(e) => setFilterObj({ ...filterObj, end: e.target.value })} />
                                 </div>
                                 <div className="text-center mt-5">
                                     <div className="flex justify-center gap-4">
@@ -94,15 +94,15 @@ const FilterModal = ({ type, openModal, setOpenModal, original, dispTransactions
                             <Tabs.Item title="Amount" >
                                 <div className="max-w-md ">
                                     <div className="mb-2 block">
-                                        <Label htmlFor="search" value="Min Amount" />
+                                        <Label htmlFor="min_amount" value="Min Amount" />
                                     </div>
-                                    <TextInput id="search" type="text" placeholder="" onChange={(e) => setFilterObj({ ...filterObj, mini: e.target.value })} required />
+                                    <TextInput id="min_amount" name='min_amount' type="text" placeholder="" onChange={(e) => setFilterObj({ ...filterObj, mini: e.target.value })} required />
                                 </div>
                                 <div className="max-w-md ">
                                     <div className="mb-2 block">
-                                        <Label htmlFor="search" value="Max Amount" />
+                                        <Label htmlFor="max_amount" value="Max Amount" />
                                     </div>
-                                    <TextInput id="search" type="text" placeholder="" onChange={(e) => setFilterObj({ ...filterObj, maxi: e.target.value })} required />
+                                    <TextInput id="max_amount" name='max_amount' type="text" placeholder="" onChange={(e) => setFilterObj({ ...filterObj, maxi: e.target.value })} required />
                                 </div>
                                 <div className="text-center mt-5">
                                     <div className="flex justify-center gap-4">

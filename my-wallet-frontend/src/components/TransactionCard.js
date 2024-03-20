@@ -30,7 +30,7 @@ const TransactionCard = ({ transaction }) => {
                 </div>
                 <div>
                     <h5 className="text-sm font-bold tracking-tight text-gray-900 dark:text-white">
-                        {transaction.amount}
+                    ₹{transaction.amount}
                     </h5>
                 </div>
             </div>

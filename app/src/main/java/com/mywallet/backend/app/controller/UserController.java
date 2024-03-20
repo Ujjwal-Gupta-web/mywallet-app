@@ -10,6 +10,7 @@ import com.mywallet.backend.app.utility.AuthUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +21,9 @@ public class UserController {
     UserService userService;
     @Autowired
     VerificationService verificationService;
+    
+    @Autowired
+    AuthUtility authUtility;
 
 
     @PostMapping("/signup")
@@ -53,7 +57,7 @@ public class UserController {
         try{
             User userDets=userService.loginUser(user);
             if(userDets!=null){
-                String token=AuthUtility.generateToken(user.getUsername());
+                String token=authUtility.generateToken(user.getUsername());
                 return ResponseEntity
                         .status(HttpStatus.OK)
                         .body(new ResponseDTO(true,"Login Success", new UserDTO(user.getUsername(),token)));
@@ -72,8 +76,8 @@ public class UserController {
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDTO> deleteUser(@RequestHeader("Authorization") String token){
         try{
-            if(AuthUtility.isValidToken(token)){
-                String username=AuthUtility.getUsernameFromToken(token);
+            if(authUtility.isValidToken(token)){
+                String username=authUtility.getUsernameFromToken(token);
                 userService.deleteUser(username);
                 return ResponseEntity
                         .status(HttpStatus.OK)

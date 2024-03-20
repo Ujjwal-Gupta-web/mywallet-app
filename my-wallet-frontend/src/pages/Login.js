@@ -16,10 +16,16 @@ const Login = () => {
     }
     const handleLogin = async () => {
         console.log(user)
+        if(user.username=="" || user.password==""){
+            toast.error("Fill all the fields")
+            setUser({ username: '', password: '' });
+            return;
+        }
         const res = await User.login(user);
         if (res.tag) {
             toast.success(res.message);
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("username", user.username);
             dispatch(auth(true))
         }
         else {

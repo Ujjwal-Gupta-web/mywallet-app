@@ -8,7 +8,8 @@ export const getContactsAction = () => async (dispatch) => {
         const res = await Contact.getContacts() // Fetch contacts from API
         let contacts = [];
         if (res.tag) {
-            contacts = res.data.contactList;
+            if(res?.data?.contactList!=null) contacts = res.data.contactList;
+            else contacts=[];
         }
         dispatch(setContacts(contacts)); // Dispatch action to set contacts in state
     } catch (error) {

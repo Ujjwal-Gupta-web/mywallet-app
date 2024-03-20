@@ -25,7 +25,10 @@ public class UserService {
 
     public User loginUser(User user){
         User userDets=userDao.getUserByUserName(user.getUsername());
-        if(userDets!=null && user.getPassword().equals(userDets.getPassword())){
+        if(userDets==null) return null;
+        String plainPassword=user.getPassword();
+        String encryptedPassword=userDets.getPassword();
+        if(passwordUtility.verifyHash(plainPassword,encryptedPassword)){
             //generate token and send back that token
             System.out.println("login success");
             return user;

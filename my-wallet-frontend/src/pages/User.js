@@ -23,7 +23,7 @@ const UserHome = ({ children }) => {
                 </div>
                 <div>
                     <Button color='gray' onClick={() => setShowBalance(!showBalance)}>
-                        {showBalance ? <>Available Balance : {convertToNumberString(balance)}</> : <>Show Balance</>}
+                        {showBalance ? <>Available Balance : ₹{convertToNumberString(balance)}</> : <>Show Balance</>}
                     </Button>
                 </div>
             </div>

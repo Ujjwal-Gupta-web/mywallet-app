@@ -16,11 +16,13 @@ public class ContactController {
 
     @Autowired
     ContactService contactService;
+    @Autowired
+    AuthUtility authUtility;
     @GetMapping("/getContactsByUsername")
     public ResponseEntity<ResponseDTO> getAllContactsByUsername(@RequestHeader("Authorization") String token){
         try{
-            if(AuthUtility.isValidToken(token)) {
-                String username = AuthUtility.getUsernameFromToken(token);
+            if(authUtility.isValidToken(token)) {
+                String username = authUtility.getUsernameFromToken(token);
                 Contact contacts = contactService.getContactsByUsername(username);
                 return ResponseEntity
                         .status(HttpStatus.OK)
@@ -40,8 +42,8 @@ public class ContactController {
     @PostMapping("/addContact")
     public ResponseEntity<ResponseDTO> addContact(@RequestHeader("Authorization") String token, @RequestBody ContactDTO contactDTO) throws Exception {
         try{
-            if(AuthUtility.isValidToken(token)) {
-                String username = AuthUtility.getUsernameFromToken(token);
+            if(authUtility.isValidToken(token)) {
+                String username = authUtility.getUsernameFromToken(token);
                 return ResponseEntity
                         .status(HttpStatus.OK)
                         .body(contactService.addContact(username, contactDTO.getContact()));

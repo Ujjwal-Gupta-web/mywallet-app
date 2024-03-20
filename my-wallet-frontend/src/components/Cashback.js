@@ -3,6 +3,7 @@ import CashbackBanner from './CashbackBanner'
 import TransactionCard from './TransactionCard'
 import { useSelector } from 'react-redux'
 import FilterModal from './FilterModal'
+import RecordNotFound from './RecordNotFound'
 
 const Cashback = () => {
   const transactions = useSelector(state => state.user.transactions);
@@ -16,10 +17,13 @@ const Cashback = () => {
       <CashbackBanner />
       <FilterModal type={"CASHBACK"} openModal={openModal} original={transactions} setOpenModal={setOpenModal} dispTransactions={dispTransactions} setDispTransactions={setDispTransactions} />
       <div className='flex flex-col items-center justify-center'>
-        <div onClick={() => setOpenModal(!openModal)}>FILTER</div>
-        {dispTransactions?.map(transaction =>
-          <TransactionCard key={transaction.transactionId} transaction={transaction} />
-        )}
+        <div onClick={() => setOpenModal(!openModal)} className='border border-lg rounded-md p-3 cursor-pointer'>FILTER</div>
+        {dispTransactions?.length > 0 ?
+          dispTransactions.map(transaction =>
+            <TransactionCard key={transaction.transactionId} transaction={transaction} />
+          ) :
+          <RecordNotFound />
+        }
       </div>
     </div>);
 }

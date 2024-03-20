@@ -3,14 +3,16 @@ package com.mywallet.backend.app.utility;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class AuthUtility {
     private static final long EXPIRATION_TIME = 15L * 24 * 60 * 60 * 1000;
     private static final String SECRET="IUvLs56wm+6044w2SXIxGpKUOQoSZwwo6K2Gsb4T+YnGEshHcHBTj+RcTz3uUQdwWUuzAhjfWeWWKyfD5JJ7gg==";
 
-    public static String generateToken(String username) {
+    public String generateToken(String username) {
         // Use jjwt library to generate a JWT token
         return Jwts.builder()
                 .setSubject(username)
@@ -18,7 +20,7 @@ public class AuthUtility {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
     }
-    public static boolean isValidToken(String token) {
+    public boolean isValidToken(String token) {
         try {
             // Use jjwt library to parse and verify the token
             Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
@@ -28,7 +30,7 @@ public class AuthUtility {
         }
     }
 
-    public static String getUsernameFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         try {
             Claims claims = Jwts.parser()
                     .setSigningKey(SECRET)

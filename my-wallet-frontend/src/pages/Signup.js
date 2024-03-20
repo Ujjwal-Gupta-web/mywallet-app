@@ -27,10 +27,10 @@ const Signup = () => {
         const toastId = toast.loading("Please Wait....")
         const actualOtp = localStorage.getItem("OTP");
         if (actualOtp === otp) {
-            toast.success("OTP verification success, please proceed immediately");
+            toast.success("OTP verification success, please proceed immediately",{id:toastId});
             localStorage.removeItem("OTP")
         }
-        else toast.error("OTP not valid")
+        else toast.error("OTP not valid",{id:toastId})
         setIsClicked(false)
     }
 
@@ -68,9 +68,10 @@ const Signup = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <Button color='gray'>Get OTP <span className='mx-3'
-                    onClick={getOTP}
-                    disabled={isClicked}
+                <Button color='gray'>
+                    Get OTP <span className='mx-3'
+                    onClick={()=>getOTP()}
+                    // disabled={isClicked}
                 ><HiArrowRight /></span></Button>
             </>
 

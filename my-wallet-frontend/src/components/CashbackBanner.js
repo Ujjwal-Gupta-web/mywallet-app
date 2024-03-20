@@ -13,10 +13,11 @@ const CashbackBanner = () => {
     useEffect(() => {
         setMoneySentTransactions(transactions.filter(transaction => transaction.transactionType === "MONEY_SENT").length)
     }, [transactions])
+    console.log(transactions)
     return (<>
         {
             isCasbackAvailable ?
-                <Banner>
+                <Banner className='my-3'>
                     <div className="flex w-full justify-between border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
                         <div className="mx-auto flex items-center">
                             <p className="flex items-center text-sm font-normal text-dark dark:text-gray-400">
@@ -24,7 +25,7 @@ const CashbackBanner = () => {
                                     <MdPercent className="h-4 w-4" />
                                 </span>
                                 <span className="[&_p]:inline">
-                                    CASHBACK AVAILABLE : {moneySentTransactions > 0 ? "1% of amount cahsback upto 100" : "5% of amount cahsback upto 1000"}
+                                    CASHBACK AVAILABLE : {moneySentTransactions > 0 ? "1% of amount cahsback upto ₹100" : "5% of amount cahsback upto ₹1000"}
                                 </span>
                             </p>
                         </div>

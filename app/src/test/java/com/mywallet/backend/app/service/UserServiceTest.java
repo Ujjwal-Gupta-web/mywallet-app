@@ -40,24 +40,22 @@ class UserServiceTest {
 
     @Test
     void testLoginUser_Success() {
-        User user = new User("testuser","password");
 
-        when(userDao.getUserByUserName(user.getUsername())).thenReturn(user);
-        when(passwordUtility.generateHash(user.getPassword())).thenReturn(user.getPassword());
+        User user = new User("username", "password");
+        when(userDao.getUserByUserName("username")).thenReturn(user);
+        when(passwordUtility.verifyHash("password", user.getPassword())).thenReturn(true);
 
         User loggedInUser = userService.loginUser(user);
 
         assertNotNull(loggedInUser);
+        assertEquals(user, loggedInUser);
     }
 
     @Test
     void testLoginUser_Failure() {
-        User user = new User("testuser","password");
-
-        when(userDao.getUserByUserName(user.getUsername())).thenReturn(null);
-
-        User loggedInUser = userService.loginUser(user);
-
+        String invalidUsername = "invalid_username";
+        when(userDao.getUserByUserName(invalidUsername)).thenReturn(null);
+        User loggedInUser = userService.loginUser(new User(invalidUsername, "password"));
         assertNull(loggedInUser);
     }
 

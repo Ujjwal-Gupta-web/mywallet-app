@@ -1,6 +1,7 @@
 package com.mywallet.backend.app.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
 @Document(collection = "verification")
 public class Verification {
     @Id
+    @Indexed(unique = true)
     private String username;
     private String otp;
     private Date lastUpdatedAt;

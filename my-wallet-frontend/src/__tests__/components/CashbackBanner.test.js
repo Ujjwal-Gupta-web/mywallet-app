@@ -28,7 +28,7 @@ describe('CashbackBanner', () => {
         });
         const { getByText } = render(<TestComp store={store} />)
         const cashbackElement = getByText(/CASHBACK AVAILABLE/i);
-        const cashbackStatement = getByText(/5% of amount cahsback upto 1000/);
+        const cashbackStatement = getByText(/5% of amount cahsback upto ₹1000/);
         expect(cashbackElement).toBeInTheDocument();
         expect(cashbackStatement).toBeInTheDocument();
     });
@@ -42,7 +42,7 @@ describe('CashbackBanner', () => {
         });
         const { getByText } = render(<TestComp store={store} />)
         const cashbackElement = getByText(/CASHBACK AVAILABLE/i);
-        const cashbackStatement = getByText(/1% of amount cahsback upto 100/);
+        const cashbackStatement = getByText(/1% of amount cahsback upto ₹100/);
         expect(cashbackElement).toBeInTheDocument();
         expect(cashbackStatement).toBeInTheDocument();
     });

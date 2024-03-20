@@ -30,7 +30,7 @@ describe('Transaction Card', () => {
         expect(getByText(transaction.transactionId)).toBeInTheDocument();
         expect(getByText(transaction.transactionType)).toBeInTheDocument();
         expect(getByText(transaction.transactionWith)).toBeInTheDocument();
-        expect(getByText(transaction.amount)).toBeInTheDocument();
+        expect(getByText("₹"+transaction.amount)).toBeInTheDocument();
         expect(getByText(formatDate(transaction.timestamp))).toBeInTheDocument();
         expect(Icon).toBe(MdCallMade);
 

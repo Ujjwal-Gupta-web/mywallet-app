@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { HiArrowCircleLeft, HiArrowCircleRight, HiArrowRight, HiCash, HiCheck, HiLockClosed, HiMail } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { addTransactionAction } from '../store/actions';
-import Loading from './Loading';
 
 const SendMoney = () => {
 
@@ -45,7 +44,7 @@ const SendMoney = () => {
             <>
                 <div className="max-w-md ">
                     <div className="mb-2 block">
-                        <Label htmlFor="amount" value="Enter Amount" />
+                        <Label htmlFor="amount" value="Enter Amount (₹)" />
                     </div>
                     <TextInput id="amount" type="number" rightIcon={HiCash} placeholder="" required 
                     //    defaultValue={0}

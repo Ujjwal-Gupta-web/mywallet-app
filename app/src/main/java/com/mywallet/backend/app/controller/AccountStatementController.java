@@ -19,11 +19,13 @@ public class AccountStatementController {
 
     @Autowired
     AccountStatementService accountStatementService;
+    @Autowired
+    AuthUtility authUtility;
     @GetMapping("/getAccountStatementByUsername")
     public ResponseEntity<ResponseDTO> getAccountStatementByUsername(@RequestHeader("Authorization") String token){
         try{
-            if(AuthUtility.isValidToken(token)){
-                String username=AuthUtility.getUsernameFromToken(token);
+            if(authUtility.isValidToken(token)){
+                String username=authUtility.getUsernameFromToken(token);
                 AccountStatement accountStatement=accountStatementService.getAccountStatementByUsername(username);
                 return ResponseEntity
                         .status(HttpStatus.OK)
@@ -43,12 +45,12 @@ public class AccountStatementController {
     @PostMapping("/addTransaction")
     public ResponseEntity<ResponseDTO> addTransaction(@RequestBody Transaction transaction, @RequestHeader("Authorization") String token){
         try{
-            if(AuthUtility.isValidToken(token)) {
-                String username = AuthUtility.getUsernameFromToken(token);
-                AccountStatement accountStatement=accountStatementService.addTransaction(username, transaction);
+            if(authUtility.isValidToken(token)) {
+                String username = authUtility.getUsernameFromToken(token);
+                ResponseDTO responseDTO=accountStatementService.addTransaction(username, transaction);
                 return ResponseEntity
                         .status(HttpStatus.OK)
-                        .body(new ResponseDTO(true,"Transaction Added Success", accountStatement));
+                        .body(responseDTO);
             }
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
@@ -65,8 +67,8 @@ public class AccountStatementController {
     @GetMapping("/getTransactionsByTransactionType/{transactionType}")
     public ResponseEntity<ResponseDTO> getTransactionsByTransactionType(@RequestHeader("Authorization") String token, @PathVariable TransactionType transactionType){
         try{
-            if(AuthUtility.isValidToken(token)) {
-                String username = AuthUtility.getUsernameFromToken(token);
+            if(authUtility.isValidToken(token)) {
+                String username = authUtility.getUsernameFromToken(token);
                 List<Transaction> transactions=accountStatementService.getTransactionsByTransactionType(username, transactionType);
                 return ResponseEntity
                         .status(HttpStatus.OK)

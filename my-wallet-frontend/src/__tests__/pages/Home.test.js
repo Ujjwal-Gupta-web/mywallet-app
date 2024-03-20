@@ -20,6 +20,14 @@ describe('Home component', () => {
         });
     });
 
+    test("snapshot testing for home page",()=>{
+        expect(render(  <Provider store={store}>
+            <Router>
+                <Home />
+            </Router>
+        </Provider>)).toMatchSnapshot();
+    })
+
     test('renders properly', () => {
         const { getByText } = render(
             <Provider store={store}>

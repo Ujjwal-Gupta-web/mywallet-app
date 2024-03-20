@@ -2,37 +2,91 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import Contacts from '../../components/Contacts';
-import { getAllByText, getByText, render, screen } from '@testing-library/react';
+import { fireEvent, getAllByText, getByText, render, screen, waitFor } from '@testing-library/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContactsAction } from '../../store/actions';
+
 
 const mockStore = configureStore([]);
-const TestComp = ({ store }) => <Provider store={store}><Router><Contacts /></Router></Provider>;
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(),
+  }));
+jest.mock("../../store/actions",()=>({
+    getContactsAction:jest.fn()
+}))
 
 describe('Contacts', () => {
-    test('renders Contacts component with initial state', async () => {
-        // const store = mockStore({
-        //     user: {
-        //         contacts: [],
-        //     },
-        // });
 
-        // const { getByText, getByLabelText } = render(
-        //     <Provider store={store}>
-        //         <Contacts />
-        //     </Provider>
-        // );
+    let store;
+    let dispatch;
 
-        // expect(getByText('Contacts')).toBeInTheDocument();
+    beforeEach(() => {
+        store = mockStore({
+            user: {
+                isAuth: true,
+                contacts:["abc@exmaple.com","chg@google.com","xyz@abc.com","qwertyx@yahoo.com",] 
+            },
+        });
+        store.dispatch = jest.fn();
+        dispatch = jest.fn();
+        useDispatch.mockReturnValue(dispatch);
+    });
 
-        // // Search input should be present
-        // expect(getByLabelText('Search contact')).toBeInTheDocument();
+    test('getContactAction works on render', () => {
+        render(
+          <Provider store={store}>
+            <Contacts />
+          </Provider>
+        );
+    
+        expect(getContactsAction).toHaveBeenCalledTimes(1);
+      });
 
-        // // Add Contact button should be present
-        // expect(getByText('Add Contact')).toBeInTheDocument();
+      test('toggle add contact section', () => {
+        const {getByText,queryByText}=render(
+          <Provider store={store}>
+            <Contacts />
+          </Provider>
+        );
+    
+        const showAddContactBtn=queryByText("Add Contact");
+        expect(showAddContactBtn).toBeInTheDocument();
+        fireEvent.click(showAddContactBtn);
 
-        // // Since contacts array is empty initially, the list should be empty
-        // await waitFor(() => {
-        //     expect(document.querySelectorAll('ul li').length).toBe(0);
-        // });
+        const hideAddContactBtn=queryByText("Hide Add Contact");
+        expect(hideAddContactBtn).toBeInTheDocument();
+        fireEvent.click(hideAddContactBtn);
+
+        expect(showAddContactBtn).toBeInTheDocument();
+        expect(queryByText("Hide Add Contact")).toBeNull();
+    
+      });
+
+      test('search contacts', async() => {
+        const {getByText,queryByText,queryAllByText,getByLabelText}=render(
+          <Provider store={store}>
+            <Contacts />
+          </Provider>
+        );
+    
+        const searchField=getByLabelText(/Search contact/);
+        expect(searchField).toBeInTheDocument();
+        fireEvent.change(searchField,{target:{value:"google"}})
+        await waitFor(()=>{
+            expect(queryAllByText(/google/).length).toBe(1)
+        })
+
+        fireEvent.change(searchField,{target:{value:".com"}})
+        await waitFor(()=>{
+            expect(queryAllByText(/.com/).length).toBe(4)
+        })
+
+        fireEvent.change(searchField,{target:{value:"x"}})
+        await waitFor(()=>{
+            expect(queryAllByText(/x/).length).toBe(3)
+        })
+
     });
 
 });

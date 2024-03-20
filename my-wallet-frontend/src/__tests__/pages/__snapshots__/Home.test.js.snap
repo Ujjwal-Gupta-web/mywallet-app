@@ -1,0 +1,270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component snapshot testing for home page 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="flex items-center justify-between p-3 flex-wrap-reverse"
+        >
+          <div
+            class="m-3 flex-col align-center justify-start"
+          >
+            <h3
+              class="text-2xl"
+            >
+              Send money from your own e-wallet with ease..
+            </h3>
+            <div
+              class="flex items-center justify-start my-5"
+            >
+              <a
+                class="flex items-center justify-between"
+                href="/login"
+              >
+                <button
+                  class="group flex items-center justify-center p-0.5 text-center font-medium relative focus:z-10 focus:outline-none text-white enabled:hover:bg-cyan-800 focus:ring-cyan-300 dark:bg-cyan-600 dark:enabled:hover:bg-cyan-700 dark:focus:ring-cyan-800 rounded-lg focus:ring-2 border border-blue-400 bg-blue-200"
+                  type="button"
+                >
+                  <span
+                    class="items-center flex justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-enabled:group-hover:bg-opacity-0 group-enabled:group-hover:text-inherit dark:bg-gray-900 dark:text-white w-full rounded-md text-sm px-4 py-2 border border-transparent"
+                  >
+                    Login
+                  </span>
+                </button>
+              </a>
+              <a
+                class="flex items-center justify-between"
+                href="/signup"
+              >
+                <button
+                  class="group flex items-center justify-center p-0.5 text-center font-medium relative focus:z-10 focus:outline-none text-white enabled:hover:bg-cyan-800 focus:ring-cyan-300 dark:bg-cyan-600 dark:enabled:hover:bg-cyan-700 dark:focus:ring-cyan-800 rounded-lg focus:ring-2 border border-blue-400 bg-blue-200 mx-3"
+                  type="button"
+                >
+                  <span
+                    class="items-center flex justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-enabled:group-hover:bg-opacity-0 group-enabled:group-hover:text-inherit dark:bg-gray-900 dark:text-white w-full rounded-md text-sm px-4 py-2 border border-transparent"
+                  >
+                    Signup
+                  </span>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div
+            class="m-3"
+          >
+            <img
+              src="https://img.freepik.com/free-vector/mobile-bank-users-transferring-money-currency-conversion-tiny-people-online-payment-cartoon-illustration_74855-14454.jpg?size=626&ext=jpg"
+            />
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between p-3 flex-wrap"
+        >
+          <div
+            class="m-3"
+          >
+            <img
+              src="https://img.freepik.com/free-vector/cashback-concept-with-smartphone_23-2148496115.jpg?size=626&ext=jpg"
+            />
+          </div>
+          <div
+            class="m-3"
+          >
+            <h3
+              class="text-2xl"
+            >
+              Get exciting rewards
+            </h3>
+            <h4
+              class="text-xl my-3"
+            >
+              Get 5% cashback up 1000 on first recharge!!!
+              <br />
+              For 1000, get 100 cashback 😊
+            </h4>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between p-3 flex-wrap-reverse"
+        >
+          <div
+            class="m-3"
+          >
+            <h3
+              class="text-2xl"
+            >
+              User friendly and secure
+            </h3>
+          </div>
+          <div
+            class="m-3"
+          >
+            <img
+              src="https://img.freepik.com/premium-vector/online-payment-cartoon-little-woman-sitting-wallet-with-banknotes-transferring-cash-into-credit-card-smartphone_102902-6991.jpg?size=626&ext=jpg"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="flex items-center justify-between p-3 flex-wrap-reverse"
+      >
+        <div
+          class="m-3 flex-col align-center justify-start"
+        >
+          <h3
+            class="text-2xl"
+          >
+            Send money from your own e-wallet with ease..
+          </h3>
+          <div
+            class="flex items-center justify-start my-5"
+          >
+            <a
+              class="flex items-center justify-between"
+              href="/login"
+            >
+              <button
+                class="group flex items-center justify-center p-0.5 text-center font-medium relative focus:z-10 focus:outline-none text-white enabled:hover:bg-cyan-800 focus:ring-cyan-300 dark:bg-cyan-600 dark:enabled:hover:bg-cyan-700 dark:focus:ring-cyan-800 rounded-lg focus:ring-2 border border-blue-400 bg-blue-200"
+                type="button"
+              >
+                <span
+                  class="items-center flex justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-enabled:group-hover:bg-opacity-0 group-enabled:group-hover:text-inherit dark:bg-gray-900 dark:text-white w-full rounded-md text-sm px-4 py-2 border border-transparent"
+                >
+                  Login
+                </span>
+              </button>
+            </a>
+            <a
+              class="flex items-center justify-between"
+              href="/signup"
+            >
+              <button
+                class="group flex items-center justify-center p-0.5 text-center font-medium relative focus:z-10 focus:outline-none text-white enabled:hover:bg-cyan-800 focus:ring-cyan-300 dark:bg-cyan-600 dark:enabled:hover:bg-cyan-700 dark:focus:ring-cyan-800 rounded-lg focus:ring-2 border border-blue-400 bg-blue-200 mx-3"
+                type="button"
+              >
+                <span
+                  class="items-center flex justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-enabled:group-hover:bg-opacity-0 group-enabled:group-hover:text-inherit dark:bg-gray-900 dark:text-white w-full rounded-md text-sm px-4 py-2 border border-transparent"
+                >
+                  Signup
+                </span>
+              </button>
+            </a>
+          </div>
+        </div>
+        <div
+          class="m-3"
+        >
+          <img
+            src="https://img.freepik.com/free-vector/mobile-bank-users-transferring-money-currency-conversion-tiny-people-online-payment-cartoon-illustration_74855-14454.jpg?size=626&ext=jpg"
+          />
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between p-3 flex-wrap"
+      >
+        <div
+          class="m-3"
+        >
+          <img
+            src="https://img.freepik.com/free-vector/cashback-concept-with-smartphone_23-2148496115.jpg?size=626&ext=jpg"
+          />
+        </div>
+        <div
+          class="m-3"
+        >
+          <h3
+            class="text-2xl"
+          >
+            Get exciting rewards
+          </h3>
+          <h4
+            class="text-xl my-3"
+          >
+            Get 5% cashback up 1000 on first recharge!!!
+            <br />
+            For 1000, get 100 cashback 😊
+          </h4>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-between p-3 flex-wrap-reverse"
+      >
+        <div
+          class="m-3"
+        >
+          <h3
+            class="text-2xl"
+          >
+            User friendly and secure
+          </h3>
+        </div>
+        <div
+          class="m-3"
+        >
+          <img
+            src="https://img.freepik.com/premium-vector/online-payment-cartoon-little-woman-sitting-wallet-with-banknotes-transferring-cash-into-credit-card-smartphone_102902-6991.jpg?size=626&ext=jpg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

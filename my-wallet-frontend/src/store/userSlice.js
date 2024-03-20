@@ -8,7 +8,7 @@ const userSlice = createSlice({
     contacts: [],
     transactions: [],
     balance: 0.0,
-    isCashbackAvailable:false,
+    isCashbackAvailable:true,
     isAuth: localStorage.getItem("token") ? true : false,
     loading:false
   },
@@ -23,9 +23,11 @@ const userSlice = createSlice({
     },
     setAccountStatement: (state, action) => {
      const accountStatement=action.payload;
-     state.balance=accountStatement.balance;
-     state.transactions=accountStatement.transactions.reverse();
-     state.isCashbackAvailable=accountStatement.casbackAvailable;
+     if(accountStatement){
+       state.balance=accountStatement.balance;
+       state.transactions=accountStatement.transactions.reverse();
+       state.isCashbackAvailable=accountStatement.casbackAvailable;
+     }
     },
     auth: (state, action) => {
       if (action.payload == false) {

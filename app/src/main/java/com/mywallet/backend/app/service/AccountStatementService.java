@@ -1,9 +1,11 @@
 package com.mywallet.backend.app.service;
 
 import com.mywallet.backend.app.dao.AccountStatementDao;
+import com.mywallet.backend.app.dto.ResponseDTO;
 import com.mywallet.backend.app.enums.TransactionType;
 import com.mywallet.backend.app.models.AccountStatement;
 import com.mywallet.backend.app.models.Transaction;
+import com.mywallet.backend.app.models.User;
 import com.mywallet.backend.app.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +28,14 @@ public class AccountStatementService {
         return accountStatementDao.getAccountStatementByUsername(username);
     }
 
-    public AccountStatement addTransaction(String username, Transaction transaction) {
+    //response dto will be sent
+    public ResponseDTO addTransaction(String username, Transaction transaction) {
+        User userObj=userService.getUserByUserName(username);
+        if(userObj==null) return new ResponseDTO(false,"USER NOT FOUND",null);
+        String successMessage="";
         AccountStatement accountStatement=accountStatementDao.getAccountStatementByUsername(username);
         AccountStatement accountStatementRes=accountStatement;
         Double amount=transaction.getAmount();
-        //add middleware to ckheck if the username exists or not
         if(accountStatement==null){
             AccountStatement accountStatement1=new AccountStatement(username,new ArrayList<Transaction>(),0.0);
             accountStatementDao.addTransaction(accountStatement1);
@@ -76,12 +81,12 @@ public class AccountStatementService {
                         }
                         else{
                             System.out.println("USER NOT FOUND");
-                            return accountStatementRes;
+                            return new ResponseDTO(false,"USER NOT FOUND",null);
                         }
                     }
                     else{
                         System.out.println("INSUFFICIENT BALANCE");
-                        return accountStatementRes;
+                        return new ResponseDTO(false,"INSUFFICIENT BALANCE",null);
                     }
                     break;
                 case TransactionType.MONEY_WITHDRAWN:
@@ -95,7 +100,7 @@ public class AccountStatementService {
                     }
                     else{
                         System.out.println("INSUFFICIENT BALANCE");
-                        return accountStatementRes;
+                        return new ResponseDTO(false,"INSUFFICIENT BALANCE",null);
                     }
                     break;
                 case TransactionType.MONEY_ADDED:
@@ -110,7 +115,9 @@ public class AccountStatementService {
                     emailService.sendTransactionUpdate(username,transaction);
                     if(accountStatement.isCasbackAvailable()){
                         double cashback=0.0;
-                        if(accountStatement.getTransactions().size()==1){
+                        if(accountStatement.getTransactions().stream()
+                                .filter(t -> t.getTransactionType().equals(TransactionType.MONEY_ADDED))
+                                .count()==1){
 //                            0.05*amount cahsback upto 1000
                             cashback=0.05*transaction.getAmount();
                             if(cashback>1000.0) cashback=1000.0;
@@ -127,6 +134,7 @@ public class AccountStatementService {
                         accountStatement.setBalance(accountStatement.getBalance()+cashback);
                         accountStatementRes=accountStatementDao.addTransaction(accountStatement);
                         emailService.sendTransactionUpdate(username,cashbackTransaction);
+                        successMessage="Cashback : ₹"+cashback+", ";
                     }
                     System.out.println("done");
                     break;
@@ -134,10 +142,10 @@ public class AccountStatementService {
 
         }
         else{
-            System.out.println("ERROR");
-            return accountStatementRes;
+            System.out.println("USER NOT FOUND");
+            return new ResponseDTO(false,"USER NOT FOUND",null);
         }
-        return accountStatementRes;
+        return new ResponseDTO(true,successMessage+transaction.getTransactionType() + " : ₹" + transaction.getAmount(),accountStatementRes);
     }
 
     private void handleCashback(AccountStatement accountStatement) {

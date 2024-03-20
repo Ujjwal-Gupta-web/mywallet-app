@@ -2,6 +2,7 @@ package com.mywallet.backend.app.models;
 
 import com.mywallet.backend.app.enums.TransactionType;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 public class Transaction {
     @Id
+    @Indexed(unique = true)
     @Field("transactionId")
     private String transactionId;
     private TransactionType transactionType;
