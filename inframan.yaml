@@ -26,35 +26,36 @@ services:
       dockerfile: ./Dockerfile
     env:
       REACT_APP_BASE_URL: "https://mywallet.inframan.cloud/api"
-  api:
-    type: web
-    path: app
-    port: 8080
-    domain: mywallet.inframan.cloud
-    path_prefix: /api
-    path_rewrite: /
-    node_pool: application-pool
-    scaling:
-      type: concurrency
-      min_replicas: 1
-      max_replicas: 2
-      target: 100
-    resources:
-      cpu_request: "250m"
-      memory_request: "512Mi"
-      cpu_limit: "1000m"
-      memory_limit: "1Gi"
-    build:
-      method: docker
-      dockerfile: ./Dockerfile
-    env:
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
-      SPRING_MAIL_HOST: "smtp.gmail.com"
-      SPRING_MAIL_PORT: "587"
-      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
-      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
-    connections:
-      DATABASE_URL: postgres/wallet
-    secrets:
-      SPRING_MAIL_USERNAME: mail-username
-      SPRING_MAIL_PASSWORD: mail-password
+# api service disabled 2026-07-25 — cluster at capacity; uncomment to re-enable the backend
+#  api:
+#    type: web
+#    path: app
+#    port: 8080
+#    domain: mywallet.inframan.cloud
+#    path_prefix: /api
+#    path_rewrite: /
+#    node_pool: application-pool
+#    scaling:
+#      type: concurrency
+#      min_replicas: 1
+#      max_replicas: 2
+#      target: 100
+#    resources:
+#      cpu_request: "250m"
+#      memory_request: "512Mi"
+#      cpu_limit: "1000m"
+#      memory_limit: "1Gi"
+#    build:
+#      method: docker
+#      dockerfile: ./Dockerfile
+#    env:
+#      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+#      SPRING_MAIL_HOST: "smtp.gmail.com"
+#      SPRING_MAIL_PORT: "587"
+#      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
+#      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
+#    connections:
+#      DATABASE_URL: postgres/wallet
+#    secrets:
+#      SPRING_MAIL_USERNAME: mail-username
+#      SPRING_MAIL_PASSWORD: mail-password
