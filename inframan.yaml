@@ -25,7 +25,7 @@ services:
       method: docker
       dockerfile: ./Dockerfile
     env:
-      REACT_APP_BASE_URL: "https://mywallet.inframan.cloud/api"
+      REACT_APP_BASE_URL: "https://mywallet.inframan.cloud/api" 
 # api service disabled 2026-07-25 — cluster at capacity; uncomment to re-enable the backend
 #  api:
 #    type: web
