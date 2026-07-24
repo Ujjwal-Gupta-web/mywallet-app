@@ -1,21 +1,22 @@
 package com.mywallet.backend.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Document(collection = "user")
+@Entity
+@Table(name = "users")
 public class User {
     @Id
-    @Indexed(unique = true)
-    @Field("username")
     private String username;
     private String password;
 
     @JsonIgnore
     private boolean isAdmin;
+
+    protected User() {
+    }
 
     public User(String username, String password) {
         this.username = username;

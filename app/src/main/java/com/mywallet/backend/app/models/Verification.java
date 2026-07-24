@@ -1,18 +1,25 @@
 package com.mywallet.backend.app.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 import java.util.Date;
 
-@Document(collection = "verification")
+@Entity
+@Table(name = "verifications")
 public class Verification {
     @Id
-    @Indexed(unique = true)
     private String username;
     private String otp;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedAt;
+
+    protected Verification() {
+    }
 
     @Override
     public String toString() {

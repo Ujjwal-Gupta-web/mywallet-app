@@ -1,12 +1,10 @@
 package com.mywallet.backend.app.repository;
 
-import com.mywallet.backend.app.models.User;
 import com.mywallet.backend.app.models.Verification;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface VerificationRepo extends MongoRepository<Verification, String> {
+public interface VerificationRepo extends JpaRepository<Verification, String> {
     List<Verification> findAll();
 }
-

@@ -1,20 +1,30 @@
 package com.mywallet.backend.app.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
-@Document(collection = "contact")
+@Entity
+@Table(name = "contacts")
 public class Contact {
     @Id
-    @Indexed(unique = true)
-    @Field("username")
     private String username;
-    private HashSet<String> contactList;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "contact_entries", joinColumns = @JoinColumn(name = "username"))
+    @Column(name = "contact")
+    private Set<String> contactList;
+
+    protected Contact() {
+    }
 
     public Contact(String username) {
         this.username = username;
@@ -29,11 +39,11 @@ public class Contact {
         this.username = username;
     }
 
-    public HashSet<String> getContactList() {
+    public Set<String> getContactList() {
         return contactList;
     }
 
-    public void setContactList(HashSet<String> contactList) {
+    public void setContactList(Set<String> contactList) {
         this.contactList = contactList;
     }
 

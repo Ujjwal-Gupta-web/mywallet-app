@@ -7,7 +7,7 @@ import com.mywallet.backend.app.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class ContactService {
@@ -26,7 +26,7 @@ public class ContactService {
         if(contactObj==null){
             contactObj=new Contact(username);
         }
-        HashSet<String> contactList=contactObj.getContactList();
+        Set<String> contactList=contactObj.getContactList();
         if(contactList.contains(contact)){
             return new ResponseDTO(false,"USER ALREADY EXISTS",null);
 

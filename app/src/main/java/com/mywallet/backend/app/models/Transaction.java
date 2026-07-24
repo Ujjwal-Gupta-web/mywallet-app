@@ -1,22 +1,29 @@
 package com.mywallet.backend.app.models;
 
 import com.mywallet.backend.app.enums.TransactionType;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Field;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 import java.util.Date;
 import java.util.UUID;
 
+@Embeddable
 public class Transaction {
-    @Id
-    @Indexed(unique = true)
-    @Field("transactionId")
     private String transactionId;
+
+    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
     private String transactionWith;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
     private Double amount;
+
+    protected Transaction() {
+    }
 
     public Transaction(String transactionId,TransactionType transactionType, String transactionWith, Double amount) {
         if(transactionId==null){
